@@ -40,7 +40,16 @@ export class ContactDetailsPage extends BasePage {
     await this.editContactBtn.click();
   }
 
-  public async assertNewContactDetails(customerData: CustomerData) {
-    await expect(this.firstNameFld).toContainText(customerData.firstname)
+  public async assertUpdatedContactDetails(customerData: CustomerData) {
+    await this.page.waitForTimeout(3000)
+    await this.cityFld.waitFor({state:'visible'})
+    const actualCity = await this.cityFld.textContent()
+    const actualEmail = await this.emailFld.textContent()
+    const actualPhone = await this.phoneFld.textContent()
+    
+     await expect(actualCity).toEqual(customerData.city)
+     await expect(actualEmail).toEqual(customerData.email)
+     await expect(actualPhone).toEqual(customerData.phone)
+
   }
 }

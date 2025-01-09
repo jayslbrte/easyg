@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "easygo:runalltest" : "playwright test" 
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jayslbrte/easyg.git"
@@ -21,6 +23,7 @@
     "expect-playwright": "^0.8.0"
   },
   "dependencies": {
-    "@faker-js/faker": "^9.3.0"
+    "@faker-js/faker": "^9.3.0",
+    "dotenv": "^16.4.7"
   }
 }

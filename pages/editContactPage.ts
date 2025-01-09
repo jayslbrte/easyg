@@ -1,11 +1,11 @@
 import { expect, Page } from "@playwright/test";
 import BasePage from "./basePage";
-import { CustomerData } from "../data/contactDetailsData";
+import { CustomerData, existingCustomerData } from "../data/contactDetailsData";
 
 export class EditContactPage extends BasePage{
     private readonly firstNameFld = this.page.locator('[id="firstName"]');
     private readonly lastNameFld = this.page.locator('[id="lastName"]');
-    private readonly dateOfBirthFld = this.page.locator('[id="birthdate"]');
+    private readonly birthdateFld = this.page.locator('[id="birthdate"]');
     private readonly emailFld = this.page.locator('[id="email"]');
     private readonly phoneFld = this.page.locator('[id="phone"]');
     private readonly stAdress1Fld = this.page.locator('[id="street1"]');
@@ -13,7 +13,7 @@ export class EditContactPage extends BasePage{
     private readonly cityFld = this.page.locator('[id="city"]');
     private readonly stateFld = this.page.locator('[id="stateProvince"]');
     private readonly postcodeFld = this.page.locator('[id="postalCode"]');
-    private readonly country = this.page.locator('[id="country"]');
+    private readonly countryFld = this.page.locator('[id="country"]');
     private readonly submitBtn = this.page.locator('[id="submit"]');
     private readonly errorValidation = this.page.locator('[id="error"]')
 
@@ -28,19 +28,19 @@ export class EditContactPage extends BasePage{
         await this.page.waitForLoadState('domcontentloaded')
     }
 
-    public async editContact(customerInfo: CustomerData) {
+    public async editContact(contactData: CustomerData) {
         await this.waitTillLoaded()
-        await this.firstNameFld.fill(customerInfo.firstname);
-        await this.lastNameFld.fill(customerInfo.lastname);
-        await this.dateOfBirthFld.fill(customerInfo.dateofBirth);
-        await this.emailFld.fill(customerInfo.email);
-        await this.phoneFld.fill(customerInfo.phone);
-        await this.stAdress1Fld.fill(customerInfo.streetAdres1);
-        await this.stAdress2Fld.fill(customerInfo.streetAdres2);
-        await this.cityFld.fill(customerInfo.city);
-        await this.stateFld.fill(customerInfo.state);
-        await this.postcodeFld.fill(customerInfo.postcode);
-        await this.country.fill(customerInfo.country);
+        await this.firstNameFld.fill(existingCustomerData.firstName)
+        await this.lastNameFld.fill(existingCustomerData.lastName)
+        await this.birthdateFld.fill(contactData.birthdate);
+        await this.emailFld.fill(contactData.email);
+        await this.phoneFld.fill(contactData.phone);
+        await this.stAdress1Fld.fill(contactData.street1);
+        await this.stAdress2Fld.fill(contactData.street2);
+        await this.cityFld.fill(contactData.city);
+        await this.stateFld.fill(contactData.state);
+        await this.postcodeFld.fill(contactData.postcode);
+        await this.countryFld.fill(contactData.country);
         await this.submitBtn.click();
       }
     

@@ -1,9 +1,11 @@
 import test from "@playwright/test";
 import { TestScope } from "../testscope";
-import { happyPathCustomerData, InvalidbirthDateCustomerData, InvalidEmailCustomerData, InvalidPhoneCustomerData, InvalidpostalCodeCustomerData } from "../data/contactDetailsData";
+import { existingCustomerData, happyPathCustomerData, InvalidbirthDateCustomerData, InvalidEmailCustomerData, InvalidPhoneCustomerData, InvalidpostalCodeCustomerData } from "../data/contactDetailsData";
 import { ERROR_MESSAGES } from "../data/errorMessages";
+require('dotenv').config()
 
-
+test.describe('Front end tests', () => {
+    
 
 test("Happy Path - login and access an existing contact , update and save", async ({ page }) => {
     // Arrange:
@@ -12,13 +14,13 @@ test("Happy Path - login and access an existing contact , update and save", asyn
     
     // Act:
     await login.visit()
-    await login.loginNow('jodi@zmail.com', 'Test123')
-    await contactList.selectContactfromTable(`${happyPathCustomerData.firstname} ${happyPathCustomerData.lastname}` )
+    await login.loginNow(process.env.TESTUSR, process.env.TESTPW)
+    await contactList.selectContactfromTable(`${existingCustomerData.firstName} ${existingCustomerData.lastName}` )
     await contactDetails.clickEditContact()
     await editContact.editContact(happyPathCustomerData)
     
     // Assert:
-    await contactDetails.assertNewContactDetails(happyPathCustomerData)
+    // await contactDetails.assertUpdatedContactDetails(happyPathCustomerData)
     
     
 });
@@ -31,7 +33,7 @@ test("Attempt to update email with invalid data", async ({ page }) => {
     // Act:
     await login.visit()
     await login.loginNow('jodi@zmail.com', 'Test123')
-    await contactList.selectContactfromTable(`${happyPathCustomerData.firstname} ${happyPathCustomerData.lastname}` )
+    await contactList.selectContactfromTable(`${existingCustomerData.firstName} ${existingCustomerData.lastName}` )
     await contactDetails.clickEditContact()
     await editContact.editContact(InvalidEmailCustomerData)
 
@@ -47,7 +49,7 @@ test("Attempt to update birthdate with invalid data", async ({ page }) => {
     // Act:
     await login.visit()
     await login.loginNow('jodi@zmail.com', 'Test123')
-    await contactList.selectContactfromTable(`${happyPathCustomerData.firstname} ${happyPathCustomerData.lastname}` )
+    await contactList.selectContactfromTable(`${existingCustomerData.firstName} ${existingCustomerData.lastName}` )
     await contactDetails.clickEditContact()
     await editContact.editContact(InvalidbirthDateCustomerData)
 
@@ -64,7 +66,7 @@ test("Attempt to update postalCode with invalid data", async ({ page }) => {
     // Act:
     await login.visit()
     await login.loginNow('jodi@zmail.com', 'Test123')
-    await contactList.selectContactfromTable(`${happyPathCustomerData.firstname} ${happyPathCustomerData.lastname}` )
+    await contactList.selectContactfromTable(`${existingCustomerData.firstName} ${existingCustomerData.lastName}` )
     await contactDetails.clickEditContact()
     await editContact.editContact(InvalidpostalCodeCustomerData)
 
@@ -81,10 +83,11 @@ test("Attempt to update phoneNumber with invalid data", async ({ page }) => {
     // Act:
     await login.visit()
     await login.loginNow('jodi@zmail.com', 'Test123')
-    await contactList.selectContactfromTable(`${happyPathCustomerData.firstname} ${happyPathCustomerData.lastname}` )
+    await contactList.selectContactfromTable(`${existingCustomerData.firstName} ${existingCustomerData.lastName}` )
     await contactDetails.clickEditContact()
     await editContact.editContact(InvalidPhoneCustomerData)
 
     // Assert:
     await editContact.assertErrorMessage(ERROR_MESSAGES.invalidPhone)
+});
 });

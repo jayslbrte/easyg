@@ -1,27 +1,32 @@
 import { faker } from "@faker-js/faker";
 
 export interface CustomerData {
-  firstname: string;
-  lastname: string;
-  dateofBirth: string;
-  email: string;
-  phone: string;
-  streetAdres1: string;
-  streetAdres2: string;
-  city: string;
-  state: string;
-  postcode: string;
-  country: string;
+  firstName: string;
+  lastName: string;
+  birthdate?: string;
+  email?: string;
+  phone?: string;
+  street1?: string;
+  street2?: string;
+  city?: string;
+  state?: string;
+  postcode?: string;
+  country?: string;
+}
+
+export const existingCustomerData: CustomerData = {
+  firstName: "jerome",
+  lastName: "fendergast",
 }
 
 export const happyPathCustomerData: CustomerData = {
-  firstname: "jerome",
-  lastname: "fendergast",
-  dateofBirth: "2000/04/25",
+  firstName: faker.person.firstName(),
+  lastName: faker.person.lastName(),
+  birthdate: "2000/04/25",
   email: `jodi-${faker.string.alphanumeric(4)}@zmail.com`,
   phone: faker.string.numeric(8),
-  streetAdres1: faker.location.streetAddress(),
-  streetAdres2: faker.location.secondaryAddress(),
+  street1: faker.location.streetAddress(),
+  street2: faker.location.secondaryAddress(),
   city: faker.location.city(),
   state: faker.location.state(),
   postcode: faker.string.numeric(4),
@@ -29,13 +34,13 @@ export const happyPathCustomerData: CustomerData = {
 };
 
 export const InvalidEmailCustomerData: CustomerData = {
-    firstname: "jerome",
-    lastname: "fendergast",
-    dateofBirth: "2000/04/25",
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    birthdate: "2000/04/25",
     email: `jodi-${faker.string.alphanumeric(4)}zmail`,
     phone: faker.string.numeric(8),
-    streetAdres1: faker.location.streetAddress(),
-    streetAdres2: faker.location.secondaryAddress(),
+    street1: faker.location.streetAddress(),
+    street2: faker.location.secondaryAddress(),
     city: faker.location.city(),
     state: faker.location.state(),
     postcode: faker.string.numeric(4),
@@ -43,13 +48,13 @@ export const InvalidEmailCustomerData: CustomerData = {
   };
 
   export const InvalidbirthDateCustomerData: CustomerData = {
-    firstname: "jerome",
-    lastname: "fendergast",
-    dateofBirth: "wwwwwwfffffff",
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    birthdate: "wwwwwwfffffff",
     email: `jodi-${faker.string.alphanumeric(4)}@zmail.com`,
     phone: faker.string.numeric(8),
-    streetAdres1: faker.location.streetAddress(),
-    streetAdres2: faker.location.secondaryAddress(),
+    street1: faker.location.streetAddress(),
+    street2: faker.location.secondaryAddress(),
     city: faker.location.city(),
     state: faker.location.state(),
     postcode: faker.string.numeric(4),
@@ -57,13 +62,13 @@ export const InvalidEmailCustomerData: CustomerData = {
   };
 
   export const InvalidpostalCodeCustomerData: CustomerData = {
-    firstname: "jerome",
-    lastname: "fendergast",
-    dateofBirth: "2000/04/25",
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    birthdate: "2000/04/25",
     email: `jodi-${faker.string.alphanumeric(4)}@zmail.com`,
     phone: faker.string.numeric(8),
-    streetAdres1: faker.location.streetAddress(),
-    streetAdres2: faker.location.secondaryAddress(),
+    street1: faker.location.streetAddress(),
+    street2: faker.location.secondaryAddress(),
     city: faker.location.city(),
     state: faker.location.state(),
     postcode: "Texas",
@@ -71,13 +76,13 @@ export const InvalidEmailCustomerData: CustomerData = {
   };
 
   export const InvalidPhoneCustomerData: CustomerData = {
-    firstname: "jerome",
-    lastname: "fendergast",
-    dateofBirth: "2000/04/25",
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    birthdate: "2000/04/25",
     email: `jodi-${faker.string.alphanumeric(4)}@zmail.com`,
     phone: "fake",
-    streetAdres1: faker.location.streetAddress(),
-    streetAdres2: faker.location.secondaryAddress(),
+    street1: faker.location.streetAddress(),
+    street2: faker.location.secondaryAddress(),
     city: faker.location.city(),
     state: faker.location.state(),
     postcode: faker.string.numeric(4),
