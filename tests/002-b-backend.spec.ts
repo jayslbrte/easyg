@@ -1,7 +1,5 @@
 import test, { expect } from "@playwright/test";
-import { before } from "node:test";
 import { happyPathCustomerData, InvalidEmailCustomerData } from "../data/contactDetailsData";
-
 
 var token
 var contactId
@@ -46,6 +44,18 @@ test("201 - POST - create a contact", async ({ request }) => {
     return contactId
     
 });
+
+test('verify created contact using GET API', async ({ request }) => {
+    const response = await request.get(`https://thinking-tester-contact-list.herokuapp.com/contacts/${contactId}`,{
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    });
+        const body = await response.json();     
+        expect(body._id).toEqual(contactId)
+        
+    
+})
 
 test("Error 400 - POST - create a contact", async ({ request }) => {
     const response = await request.post(`https://thinking-tester-contact-list.herokuapp.com/contacts`,{
@@ -98,17 +108,7 @@ test("Error 404 - POST - create a contact", async ({ request }) => {
 });
 
 
-test('verify created contact using GET API', async ({ request }) => {
-    const response = await request.get(`https://thinking-tester-contact-list.herokuapp.com/contacts/${contactId}`,{
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
-    });
-        const body = await response.json();     
-        expect(body._id).toEqual(contactId)
-        
-    
-})
+
 
 
 
