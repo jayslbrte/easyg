@@ -1,7 +1,6 @@
 import test from "@playwright/test";
 import { TestScope } from "../testscope";
 import { happyPathCustomerData, InvalidbirthDateCustomerData, InvalidEmailCustomerData, InvalidPhoneCustomerData, InvalidpostalCodeCustomerData } from "../data/contactDetailsData";
-import { ContactDetailsPage } from "../pages/contactDetailsPage";
 import { ERROR_MESSAGES } from "../data/errorMessages";
 
 
