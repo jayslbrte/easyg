@@ -15,7 +15,7 @@ This is my answer to the Tech Exam . I have chosen Playwright Framework to answe
 
  - UI https://thinking-tester-contact-list.herokuapp.com/
  - API Documentation: https://documenter.getpostman.com/view/4012288/TzK2bEa8
- - Happy Path UI Test - I used an existing record ("jerome fendergast")in the UI,  updated its contact details and saved changes. Then, verified the changes in the contact details page.
+ - Happy Path UI Test - I used an existing record ("jerome fendergast")in the UI,  updated its contact details and saved changes. Then, verified the changes in the contact details page. The websites DB is purged every now and then to keep the cost down. For this reason, test would fail if existing record is removed. If this happens, I can recreate ("jerome fendergast").
  - I also covered Negative paths in the UI
 
  - Happy Path API Test - I obtain an auth token to create a new contact and then verify that it is successfully created using GET endpoint.
